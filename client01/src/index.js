@@ -6,11 +6,9 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <>
-  <App/>
-  <App/>
-  <App/>
-  </>    // 태그들을 감쌓을때 빈 태그로 감쌓아도 됨.
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
