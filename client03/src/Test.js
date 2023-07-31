@@ -46,7 +46,7 @@ export default Test
         </div>
    )
    그래서 위 처럼 return 안 에서는 삼한 연산 ( )?( ):( )를 쓰거나, switch case 문을 사용함.
-   
+
 9. 컴포넌트 내에서 그래도 if를 쓰고 싶다면
 
    if( ){
