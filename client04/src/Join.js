@@ -4,27 +4,66 @@ import React, { useState } from 'react';
 // 회원가입을 누르면 폼 아래에 입력 내용이 제목들과 함께 출력되게 만드시오.
 
 function Join() {
-  const [content, setContent ] = useState("");   // 하나의 단어를 저장할 변수
-    const [contentList, setContentList ] = useState([]); // 단어들을 배열로 저장할 변수
-    const onSubmit=()=>{
-      let tempArr=[...contentList]; // 이 전 배열 복사
-      tempArr.push( content ); // 현재 단어 추가
-      setContentList([...tempArr]); // 배열을 contentList 로 복사
-      setContent(""); // 입력란 비움
-    }
-  return (
+    const [id, setId ] = useState("");   
+    const [pwd, setPwd ] = useState(""); 
+    const [pwdchk, setPwdchk ] = useState("");     
+    const [name, setName ] = useState("");   
+    const [email, setEmail ] = useState("");   
+
+    const [contentList, setContentList1 ] = useState([]);
+
+    const onSubmit = ()=>{
+      if( pwd !== pwdchk){
+         setContentList1(['비밀번호가 일치하지 않습니다.'])
+         return
+      } 
+      let arr = [];
+      arr.push('아이디 : ' + id);
+      arr.push('비밀번호 : ' + pwd);
+      arr.push('이름 : ' + name);
+      arr.push('이메일 : ' + email);
+      setContentList1([...arr]);
+      setId("");
+      setPwd("");
+      setPwdchk("");
+      setName("");
+      setEmail("");
+    };
+   return (
     <div>
-      <form>
-        아이디:<input type='text' /> <br/>
-        비밀번호:<input type='password' /> <br/>
-        비밀번호 확인:<input type='password' /> <br/>
-        이름:<input type='text' /> <br/>
-        이메일:<input type='text' /> <br/>
-        <button>회원가입</button>
-      </form>
-      {
-        
-      }
+      아이디:<input type='text' value={id} onChange={
+          (e)=>{
+            setId(e.currentTarget.value);
+          }
+        }/> <br/>
+       비밀번호:<input type='password' value={pwd} onChange={
+          (e)=>{
+            setPwd(e.currentTarget.value);
+          }
+        }/> <br/>
+       비밀번호 확인:<input type='password' value={pwdchk} onChange={
+          (e)=>{
+            setPwdchk(e.currentTarget.value);
+          }
+        }/> <br/>
+        이름:<input type='text' value={name} onChange={
+          (e)=>{
+            setName(e.currentTarget.value);
+          }
+        }/> <br/>
+        이메일:<input type='text' value={email} onChange={
+          (e)=>{
+            setEmail(e.currentTarget.value);
+          }
+        }/> <br/>
+        <button onClick={()=>{ onSubmit()}}>회원가입</button>
+         {
+          contentList.map(
+           (con,idx)=>{
+               return <div key={idx}>{con}</div>;
+          })
+       }
+      
     </div>
   )
 }
