@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import '../css/join.css';
 import axios from 'axios';
-import { usenavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Join(probs) {
   const [id, setId] = useState("");
@@ -9,7 +9,7 @@ function Join(probs) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
-  const navigate = usenavigate;
+  const navigate = useNavigate();
 
   // useEffect : react에서 꺼내와서 내용을 채우고, 같이 넣어준 조건에 맞을 때 자동으로 호출되는 함수
 
@@ -48,13 +48,14 @@ function Join(probs) {
     axios.post('/api/join', { id, pwd, name, email, phone: '010.1234.1234' })
       .then((result) => {
         alert('회원가입 성공')
-        location.href('/');
+        // location.href('/');
+        navigate('/');
       })
       .catch((err) => {
         console.error(err);
-        location.href('/');
+        // location.href('/');
+        navigate('/');
       })
-      .finally(() => { })
   }
 
   return (

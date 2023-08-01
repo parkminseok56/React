@@ -22,3 +22,50 @@ useEffect(()=>{
 
 
 */
+import React, { useState, useEffect } from 'react'
+import axios from "axios";
+
+// 비동기 함수를 동기식으로 바꾸는 동작이 useEffect에서 사용되어야 한다면 아래와 같이 작성.
+function Member() {
+    const [members, setMembers] = useState([]);
+    useEffect(
+        () => {
+            async function fetchData() {
+                try {
+                    const result = await axios.get('/api/members');
+                    console.log(result.data);
+                    setMembers([...result.data]);
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+            fetchData();
+        }, []
+    );
+    return (
+        <div style={{
+            display: 'flex',
+            flexDirection: "column",
+            alignItems: "center"
+        }}>
+            {
+                members.map(
+                    (members, idx) => {
+                        return (
+                            <div key={idx}>
+                                {members.userid} -
+                                {members.name} -
+                                {members.email} -
+                                {members.phone
+                                } -
+                            </div>
+                        );
+                    }
+                )
+            }
+
+        </div>
+    )
+}
+
+export default Member

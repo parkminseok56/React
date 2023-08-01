@@ -7,6 +7,7 @@ import Heading from "./Component/Heading";
 import List from "./Component/List";
 import Upload from "./Component/Upload";
 import Join from "./Component/Join";
+import Member from "./Component/Member";
 
 // Heading 태그는 화면의 상단에 상단 게시됨. 나머지 두개의 태그는 링크(메뉴) 클릭에 따라 이동함.
 function App() {
@@ -28,6 +29,16 @@ function App() {
             setContentList={setContentList}
           />
         } />
+        <Route path="/join" element={
+          <Join />
+        }
+
+        />
+        <Route path="/members" element={
+          <Member />
+        }
+
+        />
       </Routes>
     </>
   );

@@ -10,7 +10,7 @@ function Heading() {
         <Link to="/upload">upload</Link>
         <Link to="/list">list</Link>
         <Link to="/join">join</Link>
-        <Link to="/member">member</Link>
+        <Link to="/members">member</Link>
       </div>
     </div>
   )
