@@ -6,7 +6,7 @@ function Upload(  props ) {
   // const [contentList, setContentList] = useState([]);
 
   const onSubmit = ()=>{
-    let arr = [... props.contentList];
+    let arr = [... props.ContentList];
     arr.push( content );
     props.setContentList([...arr]);
     setContent("");
@@ -20,14 +20,14 @@ function Upload(  props ) {
     }}>
       <br />
       <h1> Upload 컴포넌트입니다.</h1>
-      <input type='text' onChange={
+      <input type='text' value={content} onChange={
         (e)=>{
           setContent(e.currentTarget.value);
         }
       }/>
       <button onClick={
         ()=>{
-          onsubmit();
+          onSubmit();
         }
       }>제출</button>
     </div>

@@ -21,12 +21,12 @@ function App() {
       <Routes>
           <Route path="/list" element={
           <List
-            contentList={contentList}
+            ContentList={contentList}
             setContentList={setContentList}/>
           }/>
           <Route path="/upload" element={
           <Upload
-            contentList={contentList}
+            ContentList={contentList}
             setContentList={setContentList}
             />
           }/>        
