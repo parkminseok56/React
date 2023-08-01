@@ -6,16 +6,16 @@
 //    result를 누르면 회원가입 상황을 출력해주세요.
 // 6. 회원가입 필드 : 아이디, 비번, 이름, 이메일
 import React from 'react'
-import { Link  } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Heading() {
   return (
     <div>
       <h1>Hello React~!!</h1>
       <div style={{
-        display:"flex",
-        flexDirection:"column",
-        alignItems:"center"
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
       }}>
         <Link to="/">home</Link>
         <Link to="/join">join</Link>
