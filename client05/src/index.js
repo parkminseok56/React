@@ -4,26 +4,24 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//import A from "./Component/A";
+//import B from "./Component/B";
+//import C from "./Component/C";
 
-// import A from "./Component/A";
-// import B from "./Component/B";
-// import C from "./Component/C";
-
-// import { BrowserRouter, Routes, Route} from "react-router-dom";
-import { BrowserRouter} from "react-router-dom";
+//import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-       <App />
-       {
-      //   <Routes>
-      //       <Route path='/' element={<App />} /> 
-      //       <Route path='/A' element={<A />} /> 
-      //       <Route path='/B' element={<B />} /> 
-      //       <Route path='/C' element={<C />} /> 
-      //  </Routes>
-       }
+      <App />
+      {/*<Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/A" element={<A />} />
+          <Route path="/B" element={<B />} />
+          <Route path="/C" element={<C />} />
+        </Routes>
+      */}
     </BrowserRouter>
 );
 
