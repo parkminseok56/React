@@ -9,6 +9,8 @@ function Heading() {
         <Link to="/">home</Link>
         <Link to="/upload">upload</Link>
         <Link to="/list">list</Link>
+        <Link to="/join">join</Link>
+        <Link to="/member">member</Link>
       </div>
     </div>
   )
