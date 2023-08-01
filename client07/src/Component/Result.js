@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Result(props) {
+function Result(probs) {
   return (
     <div style={{
       display: 'flex',
@@ -10,7 +10,7 @@ function Result(props) {
       <h1>
         {/* contenList에 있는 단어들을 하나 씩 출력합니다*/}
         {
-          props.contenList.map((content, idx) => {
+          probs.contentList.map((content, idx) => {
             return <div key={idx}>{content}</div>;
           }
           )
