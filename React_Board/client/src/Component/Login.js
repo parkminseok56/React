@@ -1,18 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../Style/board.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 function Login() {
-    const Navigate = useNavigate();
+    const navigate = useNavigate();
     const [userid, setUserid] = useState("");
     const [pwd, setPwd] = useState("");
-    const onsubmit = () => {
+    const [message, setMessage] = useState("");
+
+    useEffect(() => {
+        axios.get('/api/members/loginok')
+            .then((result) => {
+                if (result.data.login == 'ok') {
+                    navigate('/main');
+                }
+            })
+            .catch((err) => { });
+
+    }, []);
+
+    const onsubmit = (e) => {
+        e.preventDefault();
         axios.post('/api/members/login', { userid, pwd })
-            .then((result) => { })
+            .then((result) => {
+                // console.log(result.data.message);
+                if (result.data.login == 'ok') {
+                    navigate('/main');
+                } else {
+                    setMessage(result.data.message);
+                }
+            })
             .catch((err) => { });
     }
-
     return (
         <div>
             <form id="login-form">
@@ -29,11 +49,12 @@ function Login() {
                         }
                     } /></div>
                     <button onClick={
-                        () => {
-                            onsubmit();
+                        (e) => {
+                            onsubmit(e);
                         }
                     }>Login</button>
                     <button>Member Join</button>
+                    <div>{message}</div>
                 </fieldset>
             </form>
         </div>
