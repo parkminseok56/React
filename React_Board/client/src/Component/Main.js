@@ -4,7 +4,7 @@ import '../Style/main.css'
 import '../Style/board.css'
 import { useNavigate } from "react-router-dom";
 
-function Main() {
+function Main(props) {
     const [loginUser, setLoginUser] = useState({});
     const [boardList, setBoardList] = useState([]);
 
@@ -14,6 +14,7 @@ function Main() {
         () => {
             async function fetchData() {
                 const result1 = await axios.get('/api/members/getLoginUser');
+                console.log(result1.data.loginUser)
                 // console.log(result.data);  // 'scott' 출력
                 setLoginUser(result1.data.loginUser);
 
@@ -35,6 +36,13 @@ function Main() {
     const onMemberEdit = () => {
         navigate('/updateMember');
     }
+
+    const goBoardView = (id) => {
+        // console.log(id);
+        props.setBoardid(id);
+        navigate('/boardView');
+    }
+
     return (
         <>
             <div id='wrap'>
@@ -77,7 +85,9 @@ function Main() {
                                 return (
                                     <tr key={idx}>
                                         <td id='boardnum'>{board.id}</td>
-                                        <td id='subject'>{board.subject}</td>
+                                        <td id='subject' onClick={() => {
+                                            goBoardView(board.id);
+                                        }}>{board.subject}</td>
                                         <td id='writer'>{board.writer}</td>
                                         <td id='created_at'>{board.created_at.substring(0, 10)}</td>
                                         <td id='readCount'>{board.readCount}</td>

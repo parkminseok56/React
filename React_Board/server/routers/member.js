@@ -46,6 +46,7 @@ router.get('/loginok', (req, res, next) => {
 
 router.get('/getLoginUser', (req, res, next) => {
     const loginUser = req.session.loginUser;
+    console.log(req.session.loginUser);
     res.json({ loginUser });
 });
 
@@ -80,15 +81,15 @@ router.post('/updateMember', (req, res, next) => {
     ); // 회원정보 수정
     // 회원정보 수정이 성공했다면
     sql = 'select * from members where userid=?'
-    connection.query(sql,
-        [userid], (error, rows) => {
-            if (error) {
-                console.error(error); next(error);
-            } else {
-                req.session.loginUser = rows[0];
-            }
-        }); // 세션 수정
-    res.send('ok');
+    connection.query(sql, [userid], (error, rows) => {
+        if (error) {
+            console.error(error); next(error);
+        } else {
+            console.log(rows[0])
+            req.session.loginUser = rows[0];
+            return res.send('ok')
+        }
+    }); // 세션 수정
 });
 
 module.exports = router;
