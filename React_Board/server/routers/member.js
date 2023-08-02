@@ -23,15 +23,14 @@ router.post('/login', (req, res, next) => {
                 // console.log('아이디가 존재합니다.');
                 if (rows[0].pwd == pwd) {
                     req.session.loginUser = rows[0];
-                    res.json({ loginUser: req.session.loginUser, login: 'ok' });
+                    return res.json({ loginUser: req.session.loginUser, login: 'ok' });
                 } else {
-                    res.json({ login: 'fail', message: '비밀번호가 맞지 않습니다.' });
+                    return res.json({ login: 'fail', message: '비밀번호가 맞지 않습니다.' });
                 }
             } else {
                 // console.log('아이디가 없습니다');
                 return res.json({ login: 'fail', message: '아이디가 없습니다.' });
             }
-            res.send('ok');
         }
     });
 });
@@ -43,5 +42,12 @@ router.get('/loginok', (req, res, next) => {
         return res.json({ login: 'fail' });
     }
 })
+
+
+router.get('/getLoginUser', (req, res, next) => {
+    const loginUser = req.session.loginUser;
+    res.json({ loginUser });
+});
+
 
 module.exports = router;
