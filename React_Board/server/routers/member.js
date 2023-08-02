@@ -49,5 +49,11 @@ router.get('/getLoginUser', (req, res, next) => {
     res.json({ loginUser });
 });
 
+router.get('/logout', (req, res, next) => {
+    req.session.destroy(function () {
+        req.session;
+    })
+    res.end();
+});
 
 module.exports = router;

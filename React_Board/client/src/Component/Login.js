@@ -53,7 +53,11 @@ function Login() {
                             onsubmit(e);
                         }
                     }>Login</button>
-                    <button>Member Join</button>
+                    <button onClick={
+                        () => {
+                            navigate('/memberjoin');
+                        }
+                    }>Member Join</button>
                     <div>{message}</div>
                 </fieldset>
             </form>

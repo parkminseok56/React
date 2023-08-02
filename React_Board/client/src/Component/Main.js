@@ -2,10 +2,13 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import '../Style/main.css'
 import '../Style/board.css'
+import { useNavigate } from "react-router-dom";
 
 function Main() {
     const [loginUser, setLoginUser] = useState({});
     const [boardList, setBoardList] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(
         () => {
@@ -21,12 +24,24 @@ function Main() {
             fetchData();
         }, []
     );
+    const onLogout = () => {
+        axios.get('/api/members/logout')
+            .then((result) => {
+                navigate('/');
+            })
+            .catch((err) => {
+            });
+    }
     return (
         <>
             <div id='wrap'>
                 <h2>{loginUser.userid}({loginUser.name})님 어서오세요. &nbsp;
                     <button>회원 정보 수정</button>&nbsp;
-                    <button>로그 아웃</button>&nbsp;
+                    <button onClick={
+                        () => {
+                            onLogout();
+                        }
+                    }>로그 아웃</button>&nbsp;
                     <button>글 작성</button></h2>
                 <table align='center'>
                     <thead>
