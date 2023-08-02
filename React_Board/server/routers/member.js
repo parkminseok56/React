@@ -61,7 +61,7 @@ router.post('/join', (req, res, next) => {
     const sql = "INSERT INTO members (userid, pwd, name, phone, email) VALUES (?, ?, ?, ?, ?)";
     connection.query(sql,
         [userid, pwd, name, phone, email],
-        (error, results, fields) => {
+        (error, rows) => {
             if (error) {
                 console.error(error);
                 next(error);
@@ -69,6 +69,26 @@ router.post('/join', (req, res, next) => {
                 return res.json({ success: 'ok' });
             }
         });
+});
+
+router.post('/updateMember', (req, res, next) => {
+    const { userid, pwd, name, phone, email } = req.body;
+    let sql = "UPDATE members SET pwd = ?, name = ?, phone = ?, email = ? WHERE userid = ?";
+    connection.query(sql,
+        [pwd, name, phone, email, userid],
+        (error, result) => { }
+    ); // 회원정보 수정
+    // 회원정보 수정이 성공했다면
+    sql = 'select * from members where userid=?'
+    connection.query(sql,
+        [userid], (error, rows) => {
+            if (error) {
+                console.error(error); next(error);
+            } else {
+                req.session.loginUser = rows[0];
+            }
+        }); // 세션 수정
+    res.send('ok');
 });
 
 module.exports = router;
