@@ -5,5 +5,16 @@
     "express-session": "^1.17.3",
     "mysql2": "^3.5.2",
     "nodemon": "^3.0.1"
-  }
+  },
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
