@@ -3,7 +3,7 @@ import '../Style/board.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
-function Login() {
+function Login(props) {
     const navigate = useNavigate();
     const [userid, setUserid] = useState("");
     const [pwd, setPwd] = useState("");
@@ -28,7 +28,7 @@ function Login() {
                 if (result.data.login == 'ok') {
                     navigate('/main');
                 } else {
-                    setMessage(result.data.message);
+                    props.setMessage(result.data.message);
                 }
             })
             .catch((err) => { });
@@ -58,7 +58,7 @@ function Login() {
                             navigate('/memberjoin');
                         }
                     }>Member Join</button>
-                    <div>{message}</div>
+                    <div>{props.message}</div>
                 </fieldset>
             </form>
         </div>

@@ -52,8 +52,23 @@ router.get('/getLoginUser', (req, res, next) => {
 router.get('/logout', (req, res, next) => {
     req.session.destroy(function () {
         req.session;
-    })
+    });
     res.end();
+});
+
+router.post('/join', (req, res, next) => {
+    const { userid, pwd, name, phone, email } = req.body;
+    const sql = "INSERT INTO members (userid, pwd, name, phone, email) VALUES (?, ?, ?, ?, ?)";
+    connection.query(sql,
+        [userid, pwd, name, phone, email],
+        (error, results, fields) => {
+            if (error) {
+                console.error(error);
+                next(error);
+            } else {
+                return res.json({ success: 'ok' });
+            }
+        });
 });
 
 module.exports = router;

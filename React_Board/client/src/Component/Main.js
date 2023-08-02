@@ -32,11 +32,18 @@ function Main() {
             .catch((err) => {
             });
     }
+    const onMemberEdit = () => {
+        navigate('/updateMember');
+    }
     return (
         <>
             <div id='wrap'>
                 <h2>{loginUser.userid}({loginUser.name})님 어서오세요. &nbsp;
-                    <button>회원 정보 수정</button>&nbsp;
+                    <button onClick={
+                        () => {
+                            onMemberEdit();
+                        }
+                    }>회원 정보 수정</button>&nbsp;
                     <button onClick={
                         () => {
                             onLogout();
