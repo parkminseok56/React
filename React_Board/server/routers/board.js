@@ -5,6 +5,7 @@ const mysql = require('mysql2');
 const multer = require('multer');   // npm i 설치 
 const path = require('path');
 const fs = require('fs');
+const { error } = require('console');
 
 
 const connection = mysql.createConnection({
@@ -72,5 +73,25 @@ router.post('/fileUpload', uploadObj.single('image'), (req, res, next) => {
         }
     );
 });
+
+const uploadObj2 = multer();
+router.post('/Writeboard', (req, res, next) => {
+    const { userid, subject, content, filename, realfilename } = req.body;
+    const sql = "insert into boards(writer,subject,content,filename,realfilename)values(?,?,?,?,?)";
+    connection.query(
+        sql, [userid, subject, content, filename, realfilename],
+        (error, results, fields) => {
+            if (error) {
+                console.error(error);
+                next(error);
+            } else {
+                return res.send('ok');
+            }
+        }
+    )
+
+});
+
+
 
 module.exports = router;

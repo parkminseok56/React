@@ -35,8 +35,13 @@ function BoardView(props) {
                 <tr height="300">
                     <th align='center' width="150">내용</th>
                     <td colSpan="2" height="300" width="300"><pre>{board.content}</pre><br /></td>
-                    <td width="150" align='center'><img src="" width="150" /></td>
+                    <td width="150" align='center'><img src={`http://localhost:5000'${board.filename}`} width="150" /></td>
                 </tr>
+                <tr><td colSpan="4">
+                    <button>수정</button>
+                    <button>삭제</button>
+                    <button>메인으로</button>
+                </td></tr>
             </table>
         </div>
     )

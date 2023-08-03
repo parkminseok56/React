@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 function WriteBoard() {
+
+    const navigate = useNavigate();
+
     const [loginUser, setLoginUser] = useState({});
     const [subject, setSubject] = useState("");
     const [content, setContent] = useState("");
@@ -16,8 +20,31 @@ function WriteBoard() {
     });
 
     const onsubmit = () => {
-
-    }
+        // 작성된 내용을 boards 테이블에 레코드로 추가하고, /main으로 되돌아가도록 제작하시오.
+        // 서버의 라우터 '/api/boards/writeboard'
+        if (subject === '') {
+            return alert('제목은 필수 입력사항입니다.');
+        } else if (content === '') {
+            return alert('내용은 필수 입력사항입니다.');
+        } else {
+            // 
+            axios.post('/api/boards/Writeboard',
+                {
+                    userid: loginUser.userid,
+                    subject,
+                    content,
+                    filename,
+                    realfilename
+                }
+            )
+                .then((result) => {
+                    navigate('/main');
+                })
+                .catch((error) => {
+                    alert('등록이 실패하였습니다. 다시 시도해주세요.');
+                });
+        }
+    };
 
     useEffect(() => {
         async function fetchData() {
@@ -57,7 +84,7 @@ function WriteBoard() {
                 </tr>
                 <tr>
                     <th width='100'>작성자</th>
-                    <td width="600"><input type='text' value="{loginUser.userid}" disabled /></td>
+                    <td width="600"><input type='text' value={loginUser.userid} disabled /></td>
                 </tr>
                 <tr><th width='100'>내용</th>
                     <td width="600">&nbsp;<textarea rows="10" cols="95" onChange={
@@ -75,7 +102,7 @@ function WriteBoard() {
                     } />
 
                         <div class="img-preview">
-                            <img src={imgsrc} Style={{ imgstyle }} width="250" alt="미리보기" />
+                            <img src={imgsrc} Style={imgstyle} width="250" />
                         </div>
 
                     </td>

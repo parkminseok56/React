@@ -98,7 +98,7 @@ function Main(props) {
                                             goBoardView(board.id);
                                         }}>{board.subject}</td>
                                         <td id='writer'>{board.writer}</td>
-                                        <td id='created_at'>{board.created_at.substring(0, 10)}</td>
+                                        <td id='created_at'>{board.created_at ? board.created_at.substring(0, 10) : ''}</td>
                                         <td id='readCount'>{board.readCount}</td>
                                     </tr>
                                 );
