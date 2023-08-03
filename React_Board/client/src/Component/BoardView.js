@@ -10,10 +10,10 @@ function BoardView(props) {
         setBoardid(props.boardid);
         console.log(boardid);
 
-        axios.get(`/api/boards/getboard/${boardid}`)
+        axios.post(`/api/boards/getboard/${boardid}`)
             .then((result) => {
                 console.log(result.data);
-                setBoard(result.data);
+                setBoard({ ...result.data.board });
             })
             .catch((err) => { });
     }, [boardid]);
