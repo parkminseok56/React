@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import BoardView from './Component/BoardView';
 import WriteBoard from './Component/WriteBoard';
 import UpdateBoard from './Component/UpdateBoard';
+import Reply from './Component/Reply';
 
 function App() {
   const [message, setMessage] = useState();
@@ -30,6 +31,8 @@ function App() {
         <Route path='/writeBoard' element={<WriteBoard />} />
 
         <Route path='/updateBoard' element={<UpdateBoard boardid={boardid} setBoardid={setBoardid} />} />
+
+        <Route path='/reply' element={<Reply boardid={boardid} setBoardid={setBoardid} />} />
 
       </Routes>
     </>

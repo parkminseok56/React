@@ -109,4 +109,15 @@ router.post('/updateBoard', uploadObj2.none(), (req, res, next) => {
 
 });
 
+router.delete('/deleteBoard/:id', (req, res) => {
+    const sql = "delete form boards where id=?";
+    database.query(
+        sql,
+        [req.params.id],
+        (err, result) => {
+            res.send('ok');
+        }
+    )
+});
+
 module.exports = router;
