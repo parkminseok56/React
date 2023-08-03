@@ -92,6 +92,21 @@ router.post('/Writeboard', (req, res, next) => {
 
 });
 
+router.post('/updateBoard', uploadObj2.none(), (req, res, next) => {
+    const { id, subject, content, filename, realfilename } = req.body;
+    const sql = "update boards set subject=?,content=?,filename=?,realfilename=? where id=?";
+    connection.query(
+        sql, [subject, content, filename, realfilename, id],
+        (error, results, fields) => {
+            if (error) {
+                console.error(error);
+                next(error);
+            } else {
+                return res.send('ok');
+            }
+        }
+    )
 
+});
 
 module.exports = router;

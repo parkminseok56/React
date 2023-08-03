@@ -6,6 +6,7 @@ import UpdateMember from './Component/UpdateMember';
 import { Routes, Route } from 'react-router-dom';
 import BoardView from './Component/BoardView';
 import WriteBoard from './Component/WriteBoard';
+import UpdateBoard from './Component/UpdateBoard';
 
 function App() {
   const [message, setMessage] = useState();
@@ -26,7 +27,9 @@ function App() {
         <Route path='/updateMember' element={<UpdateMember message={message} setMessage={setMessage} />
         } />
 
-        <Route path='/WriteBoard' element={<WriteBoard />} />
+        <Route path='/writeBoard' element={<WriteBoard />} />
+
+        <Route path='/updateBoard' element={<UpdateBoard boardid={boardid} setBoardid={setBoardid} />} />
 
       </Routes>
     </>
