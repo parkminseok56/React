@@ -110,8 +110,8 @@ router.post('/updateBoard', uploadObj2.none(), (req, res, next) => {
 });
 
 router.delete('/deleteBoard/:id', (req, res) => {
-    const sql = "delete form boards where id=?";
-    database.query(
+    const sql = "delete from boards where id=?";
+    db.query(
         sql,
         [req.params.id],
         (err, result) => {
@@ -119,5 +119,24 @@ router.delete('/deleteBoard/:id', (req, res) => {
         }
     )
 });
+
+router.get('/getReplyList/:id', (req, res, next) => {
+    console.log('param:', req.params.id);
+    const sql = 'select * from reply where boardnum=?';
+    connection.query(
+        sql,
+        [req.params.id],
+        (error, rows) => {
+            if (error) {
+                console.error(error);
+                next(error);
+            } else {
+                return res.send(rows);
+            }
+        }
+    );
+});
+
+
 
 module.exports = router;
