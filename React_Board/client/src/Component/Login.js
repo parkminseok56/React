@@ -10,8 +10,10 @@ function Login(props) {
     const [message, setMessage] = useState("");
 
     useEffect(() => {
+        console.log('')
         axios.get('/api/members/loginok')
             .then((result) => {
+                console.log()
                 if (result.data.login == 'ok') {
                     navigate('/main');
                 }

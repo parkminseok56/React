@@ -21,5 +21,18 @@ router.get('/getBoardList', (req, res, next) => {
     })
 });
 
+router.get('/getBoard/:id', (req, res) => {
+    console.log(req.params.id);
+    const sql = "select * from boards where id=?";
+    connection.query(sql, [req.params.id], (error, rows) => {
+        if (error) {
+            console.error(error);
+            next(error);
+        } else {
+            return res.send(rows);
+            // console.log(rows[0]);
+        }
+    });
+});
 
 module.exports = router;

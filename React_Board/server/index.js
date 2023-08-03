@@ -15,15 +15,19 @@ app.use(express.urlencoded({ extended: false })); // req.body 에 관한 사용 
 const membersRouter = require('./routers/member');
 const boardsRouter = require('./routers/board');
 
+
+
 app.use('/api/members', membersRouter);
 app.use('/api/boards', boardsRouter);
 
 //----------------------------------------------------------------------------------
+
 app.use((req, res, next) => {
     const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
     error.status = 404;
     next(error);
 });
+
 
 app.use((err, req, res, next) => {
     res.locals.message = err.message;

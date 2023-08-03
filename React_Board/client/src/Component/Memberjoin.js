@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 function Memberjoin(props) {
-    const [userid, setUserid] = useState("");
+    const [userid, setUserid] = useState("a");
     const [pwd, setPwd] = useState("");
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
