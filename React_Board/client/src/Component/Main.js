@@ -43,6 +43,10 @@ function Main(props) {
         navigate('/boardView');
     }
 
+    const writeBoard = () => {
+        navigate('/WriteBoard');
+    }
+
     return (
         <>
             <div id='wrap'>
@@ -57,7 +61,12 @@ function Main(props) {
                             onLogout();
                         }
                     }>로그 아웃</button>&nbsp;
-                    <button>글 작성</button></h2>
+
+                    <button onClick={
+                        () => {
+                            writeBoard();
+                        }
+                    }>글 작성</button></h2>
                 <table align='center'>
                     <thead>
                         <tr>

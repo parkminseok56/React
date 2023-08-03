@@ -5,6 +5,15 @@ function WriteBoard() {
     const [loginUser, setLoginUser] = useState({});
     const [subject, setSubject] = useState("");
     const [content, setContent] = useState("");
+    const [imgsrc, setImgsrc] = useState("");
+    const [imgstyle, setImgstyle] = useState({});
+
+    const [filename, setFilename] = useState("");
+    const [realfilename, setRealfilename] = useState("");
+
+    useState(() => {
+        setImgstyle({ display: "none" });
+    });
 
     const onsubmit = () => {
 
@@ -17,6 +26,23 @@ function WriteBoard() {
         }
         fetchData();
     }, []);
+
+    const fileUpload = (e) => {
+        console.log(e.target.files);
+        let formData = new FormData();
+        formData.append("image", e.target.files[0]);
+        axios.post('/api/boards/fileUpload', formData)
+            .then((result) => {
+                // console.log(result.data.filename, result.data.realfilename);
+                setImgsrc(`http://localhost:5000${result.data.filename}`);
+                setImgstyle({ display: "block" });
+
+                setFilename(result.data.filename);
+                setRealfilename(result.data.realfilename);
+
+            })
+            .catch(() => { });
+    }
 
     return (
         <div id="wrap">
@@ -47,6 +73,10 @@ function WriteBoard() {
                             fileUpload(e);
                         }
                     } />
+
+                        <div class="img-preview">
+                            <img src={imgsrc} Style={{ imgstyle }} width="250" alt="미리보기" />
+                        </div>
 
                     </td>
                 </tr>
