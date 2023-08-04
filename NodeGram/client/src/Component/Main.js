@@ -1,19 +1,19 @@
 import React from 'react';
-import '../Style/head.css';
 import '../Style/main.css';
 
 function Main() {
     return (
         <div className="timeline">
-            <div class="twits">
+            <div className="twits">
                 <div id="hashtag-form">
-                    <input type='text' placeholder='태그 검색' />
-                    <button class="btn">검색</button>
+                    <input type="text" placeholder="태그 검색" />
+                    <button className="btn">검색</button>
                 </div>
 
                 <div class="twit">
-
+                    {/* 게시물들 나올 예정입니다 */}
                 </div>
+
             </div>
         </div>
     )

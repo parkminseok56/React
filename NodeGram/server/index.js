@@ -31,10 +31,10 @@ const indexRouter = require('./routers');
 const postRouter = require('./routers/post');
 const authRouter = require('./routers/auth');
 const userRouter = require('./routers/user');
-app.use('/', indexRouter);
-app.use('/post', postRouter);
-app.use('/auth', authRouter);
-app.use('/user', userRouter);
+app.use('/api/', indexRouter);
+app.use('/api/post', postRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
 
 
 
