@@ -23,6 +23,7 @@
 }
 
 #join-form {
-  background-color: rgb(138, 219, 254);
-  text-align: right;
+  background-color: rgb(245, 187, 213);
+  border-radius: 4px;
+  padding: 10px;
 }

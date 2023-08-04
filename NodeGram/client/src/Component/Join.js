@@ -16,11 +16,10 @@ function Join() {
             .then((result) => {
                 if (result.data.message) {
                     alert(result.data.message);
-                } else if (result.data.success === 'ok') {
+                } else if (result.data.success) {
+                    alert(result.data.success);
                     navigate('/');
-
                 }
-
             });
     }
 

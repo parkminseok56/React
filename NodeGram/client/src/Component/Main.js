@@ -4,8 +4,8 @@ import '../Style/main.css';
 function Main() {
     return (
         <div className="timeline">
-            <div className="twits">
-                <div id="hashtag-form">
+            <div className="twits" >
+                <div id="hashtag-form" >
                     <input type="text" placeholder="태그 검색" />
                     <button className="btn">검색</button>
                 </div>
@@ -15,7 +15,7 @@ function Main() {
                 </div>
 
             </div>
-        </div>
+        </div >
     )
 }
 

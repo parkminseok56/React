@@ -9,7 +9,7 @@ const session = require('express-session');
 const exp = require('constants');
 
 const app = express(); // 서버 운영을 위한 객체 로딩
-app.set('port', process.env.PORT || 3000);   // 서버 포트에 사용할 값을 변수에 저장
+app.set('port', process.env.PORT || 5000);   // 서버 포트에 사용할 값을 변수에 저장
 dotenv.config();
 app.use(express.static(path.join(__dirname, 'public'))); // 일반 static 폴더 설정
 app.use('/img', express.static(path.join(__dirname, 'uploads')));
@@ -36,7 +36,10 @@ app.use('/api/post', postRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 
-
+const passportConfig = require('./passport');
+passportConfig();
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 //===============================에러 처리 라우터=============================================================================
