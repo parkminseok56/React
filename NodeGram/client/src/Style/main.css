@@ -1,22 +1,21 @@
-.timeline {
-  width: 700px;
-  display: block;
-  border-radius: 4px;
-  vertical-align: top;
-  margin-right: 10px auto;
-}
+.timeline {   width: 700px; display: block; border-radius: 4px; vertical-align: top; margin:10px auto;}
 
-.twists {
-  border: 1px solid silver;
-  border-radius: 4px;
-  padding: 10px;
-  position: relative;
-  margin: 10px 0px;
-  background: rgb(248, 224, 115);
-  width: 96%;
-}
+.twits { border: 1px solid silver;  border-radius: 4px;  padding: 10px;  position: relative; margin:10px 0px; background: rgb(248, 224, 115); width:96%;}
 
-#hashtag-from {
-  text-align: right;
-  width: 100%;
-}
+#hashtag-form { text-align: right; width:100%;}
+
+
+.followings .followers { background: rgb(242, 207, 207); }
+.user-name { font-weight: bold; font-size: 18px; }
+.count { font-weight: bold; color: rgb(247, 9, 57); font-size: 18px; }
+
+#write-form{ background-color: rgb(182, 204, 246); border-radius: 4px; padding:10px; }
+
+textarea { width: 95%; min-height: 72px; }
+#post-btn { float: right;  color: white;  background: crimson;  border: none;  }
+
+.twit {  border: 2px solid rgb(110, 102, 102);  border-radius: 4px;  padding: 10px;  position: relative; margin-bottom: 10px; }
+.twit-img { text-align: center; }
+.twit-img img { max-width: 75%; }
+.error-message { color: red; font-weight: bold; }
+
