@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 function Main(props) {
     const [loginUser, setLoginUser] = useState({});
     const [boardList, setBoardList] = useState([]);
+    const [paging, setPaging] = useState({});
 
     const navigate = useNavigate();
 
@@ -18,9 +19,10 @@ function Main(props) {
                 // console.log(result.data);  // 'scott' 출력
                 setLoginUser(result1.data.loginUser);
 
-                const result2 = await axios.get('/api/boards/getBoardList');
-                setBoardList([...result2.data]);
-                console.log(boardList)
+                const result2 = await axios.get('/api/boards/getBoardList/1');
+                setBoardList([...result2.data.rows]);
+                setPaging(result2.data.paging);
+
             }
             fetchData();
         }, []
