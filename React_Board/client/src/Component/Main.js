@@ -23,9 +23,9 @@ function Main(props) {
             window.removeEventListener("scroll", handleScroll);
         }
     });
-    const handleScroll() => {
+    const handleScroll = () => {
         // Scroll 이벤트가 일어나면 실행될 함수
-        const scrollHeight = document.documentElement.scrollHeight;
+        const scrollHeight = document.documentElement.scrollHeight; //스크롤이 가능한 크기
         const scrollTop = document.documentElement.scrollTop; // 현재 위치
         const clientHeight = document.documentElement.clientHeight; // 내용물의 크기
 
@@ -73,7 +73,7 @@ function Main(props) {
         navigate('/boardView');
     }
 
-    const onPageMove = (p) => {
+    const onPageMove = async (p) => {
         // console.log(p);
         const result2 = await axios.get(`/api/boards/getBoardList/${p}`);
         // setBoardList([...result2.data.rows]);

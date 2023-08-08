@@ -25,21 +25,7 @@ app.use(session({
     },
 }));
 
-const passportConfig = require('./passport');
-passportConfig();
-app.use(passport.initialize());
-app.use(passport.session());
 
-//------------------------------------------------------------
-
-const indexRouter = require('./routers');
-const postRouter = require('./routers/post');
-const authRouter = require('./routers/auth');
-const userRouter = require('./routers/user');
-app.use('/api/', indexRouter);
-app.use('/api/post', postRouter);
-app.use('/api/auth', authRouter);
-app.use('/api/user', userRouter);
 
 
 
@@ -59,4 +45,5 @@ app.use((err, req, res, next) => {
 app.listen(app.get('port'), () => {
     console.log(app.get('port'), ' 포트에서 대기중...');
 });
+
 
