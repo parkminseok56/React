@@ -13,6 +13,11 @@ function Login() {
         const result = axios.post('api/member/login', { email, password })
     }
 
+    const onLoginKakao = () => {
+        window.location.href = 'http://localhost:5000/api/member/kakao';
+    }
+
+
     return (
         <div id="wrap">
             <div id="logo">MyStarGram</div>
@@ -31,10 +36,10 @@ function Login() {
                 }
             }>로그인</button></div>
             <div><button id='join' onClick={() => { navigate('/join') }}>회원가입</button></div><br />
-            <div><button id='kakao'></button></div>
-            <div><button id='naver'></button></div>
-            <div><button id='google'></button></div>
-            <div><button id='facebook'></button></div>
+            <div><button id='kakao' onClick={() => { onLoginKakao(); }}></button></div>
+            <div><button id='naver' onClick={() => { onLoginKakao(); }}></button></div>
+            <div><button id='google' onClick={() => { onLoginKakao(); }}></button></div>
+            <div><button id='facebook' onClick={() => { onLoginKakao(); }}></button></div>
 
 
         </div>

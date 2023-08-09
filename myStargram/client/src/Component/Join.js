@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Join() {
+
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordChk, setPasswordchk] = useState('');
@@ -27,7 +30,7 @@ function Join() {
         }
     }
 
-    const navigate = useNavigate();
+
     return (
         <div id='wrap'>
             <div id="logo">MyStarGram</div>
@@ -36,19 +39,19 @@ function Join() {
             <div><input type='text' onChange={
                 (e) => { setEmail(e.currentTarget.value) }
             } /></div>
-            <div className='lable'><label>password</label></div><br />
+            <div className='lable'><label>Password</label></div><br />
             <div><input type='password' onChange={
                 (e) => { setPassword(e.currentTarget.value) }
             } /></div>
-            <div className='lable'><label>passwordChk</label></div><br />
+            <div className='lable'><label>PasswordChk</label></div><br />
             <div><input type='password' onChange={
                 (e) => { setPasswordchk(e.currentTarget.value) }
             } /></div>
-            <div className='lable'><label>nick</label></div><br />
+            <div className='lable'><label>Nickname</label></div><br />
             <div><input type='text' onChange={
                 (e) => { setNick(e.currentTarget.value) }
             } /></div>
-            <div className='lable'><label>phone</label></div><br />
+            <div className='lable'><label>Phone</label></div><br />
             <div><input type='text' onChange={
                 (e) => { setPhone(e.currentTarget.value) }
             } /></div>

@@ -79,11 +79,11 @@ router.get('/kakao', passport.authenticate('kakao'));
 
 router.get('/kakao/callback',
     passport.authenticate('kakao',
-        { failureRedirect: 'http://localhost:3000/' }),
+        { failureRedirect: 'http://localhost:3000/home' }),
     (req, res) => {
         //res.send( { login:'ok', loginUser : req.user } );
         // axios로 요청받지 못한 라우터는  응답보낼곳이 5000 포트밖에 없으므로 res.send 는 http://localhost:5000 으로 가려고 합니다. 따라서 아래와 같이 3000으로 가려면 redirect 를 사용합니다.
-        res.redirect('http://localhost:3000/');
+        res.redirect('http://localhost:3000/home');
     }
 );
 
