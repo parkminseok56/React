@@ -18,7 +18,7 @@ function Join() {
         if (!phone) { return alert('전화번호를 입력하세요'); }
 
 
-        const result = axios.post('/api/member/join', { email, password, nick, phone });
+        const result = await axios.post('/api/member/join', { email, password, nick, phone });
         if (result.data.success == 'ok') {
             alert((await result).data.message);
             navigate('/home');
