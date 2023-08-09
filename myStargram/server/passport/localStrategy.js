@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
     host : 'localhost',
     user : 'root',
     password : 'adminuser',
-    database : 'node_gram'
+    database : 'mystargram'
 });
 
 
@@ -17,7 +17,7 @@ module.exports=()=>{
             { usernameField:'email',  passwordField:'password',} , 
             async (email, password, done)=>{
                 try{
-                    let sql = "select * from users where email=?";
+                    let sql = "select * from members where email=?";
                     connection.query( sql, [email],  async (err, rows)=>{
                         if( rows.length>=1 ){
                             const result = await bcrypt.compare(password, rows[0].password);
@@ -32,7 +32,7 @@ module.exports=()=>{
                     });
                 }catch(err){
                     console.error(err);
-                    done(err);  // 로그인 중간에 서버에러가 났다면
+                    done(err);  
                 }
             }
         )

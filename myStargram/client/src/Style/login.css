@@ -1,76 +1,77 @@
-@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
-#logo {
-  font-family: "Dancing Script", cursive;
-  font-size: 300%;
-  margin-bottom: 50px;
-}
-#wrap {
-  border: 1px solid silver;
-  border-radius: 20px;
-  width: 700px;
-  padding: 40px 10px;
-  max-width: 700px;
-  margin: 0 auto;
-  margin-top: 1rem;
-  text-align: center;
-  box-shadow: 0px 19px 38px rgba(0, 0, 0, 0.03),
-    0px 15px 12px rgba(0, 0, 0, 0.1);
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+#logo{ font-family: 'Dancing Script', cursive; font-size:300%; margin-bottom:50px;}
+#wrap{
+    border:1px solid silver;
+    border-radius: 20px;
+    width: 700px;
+    padding: 40px 10px;
+    max-width: 700px;
+    margin: 0 auto;
+    margin-top: 1rem;
+    text-align:center;
+    box-shadow: 15px 15px 20px rgba(49, 47, 47, 0.2);
 }
 label {
-  font-weight: bold;
-  float: left;
+    font-weight: bold; float:left
 }
 
-.lable {
-  width: 80%;
-  margin: 0 auto;
+.lable{
+    width:70%; margin:0 auto;
 }
 
 input {
-  border-radius: 10px;
-  border: 1px solid #c6c6c6;
-  padding: 5px;
-  margin-bottom: 10px;
-  width: 80%;
+    border-radius: 10px;
+    border: 1px solid #c6c6c6;
+    padding: 5px;
+    margin-bottom: 5px;
+    width:70%;
+    height:40px;
+    font-size:110%;
 }
-input:active,
-input:focus {
-  outline: none;
+
+.title{
+    font-weight: bold; font-size:120%;
 }
+
+input:active, input:focus {
+    outline: none;
+}
+
+
 button {
-  width: 70%;
-  border-radius: 15px;
-  padding: 5px 10px;
-  margin: 10px auto;
-  height: 55px;
-  background-size: 90%;
+    width:70%;
+    border-radius: 15px;
+    padding: 5px 10px;
+    margin: 5px auto;
+    height:55px;
+    background-size: 90%;
 }
-#login,
-#join {
-  font-size: 110%;
-  color: white;
-  font-weight: bold;
+#login, #join{
+    font-size: 110%;
+    color: white;
+    font-weight: bold;
 }
-#login {
-  background-color: red;
+#login{background-color: red;}
+#join{background-color: orange;}
+#login:hover, #join:hover {
+    color: black;
+
+    background-color: white;
 }
-#join {
-  background-color: orange;
+
+
+
+#kakao{
+    background-image: url(../images/kakao2.png);
 }
-#login:hover,
-#join:hover {
-  color: black;
-  background-color: white;
+#naver{
+    background-image: url(../images/naver2.png);
 }
-#kakao {
-  background-image: url(../images/kakao2.png);
+#facebook{
+    background-image: url(../images/facebook2.png);
 }
-#naver {
-  background-image: url(../images/naver2.png);
+#google{
+    background-image: url(../images/google.png);
 }
-#facebook {
-  background-image: url(../images/facebook2.png);
-}
-#google {
-  background-image: url(../images/google.png);
-}
+
+
