@@ -25,8 +25,8 @@ app.use(session({
     },
 }));
 
-
-
+const MemberRouter = require('./routers/Member');
+app.use('/api/Member', MemberRouter);
 
 
 //------------------------------------------------------------

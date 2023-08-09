@@ -1,37 +1,38 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt'); // express 서버에서 사용하는 비밀번호를 암호화하는 모듈
 
 const mysql = require('mysql2');
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'adminuser',
-    database: 'node_gram'
+    database: 'mystargram'
 });
 
 router.post('/join', (req, res, next) => {
-    const { email, nick, password } = req.body;
+    const { email, password, nick, phone } = req.body;
     // 전송된 이메일의 회원이 이미 있는지 검사
-    let sql = "select * from users where email=?";
+    let sql = "select * from members where email=?";
     connection.query(sql, [email], async (err, rows) => {
-        if (err) { console.error(err); next(err); }
+        if (err) { console.error(err); next(err); } // 에러가 있다면 에러처리 라우터로 이동.
         if (rows.length >= 1) {  // 이미 전송된 이메일의 회원이 있다면
-            return res.send({ message: '이메일 중복입니다' });
+            return res.send({ success: 'fail', message: '이미 등록된 이메일입니다' });
         } else {
+            const hash = await bcrypt.hash(password, 12); // 비밀번호를 hash로 암호화함.
             // 전송된 이메일의 회원이 없으므로 새로 회원으로 가입 시킵니다
-            sql = "insert into users(email, nick, password, provider) values(?,?,?,?)";
-            const hash = await bcrypt.hash(password, 12);
-            connection.query(sql, [email, nick, hash, 'local'],
+            sql = "insert into members(email, password, nick, phone, provider) values(?,?,?,?,?)";
+            connection.query(sql, [email, hash, nick, phone, 'local'],
                 (err, results, fields) => {
                     if (err) { console.error(err); next(err); }
-                    return res.send({ success: '회원가입되었습니다. 로그인하세요' });
+                    return res.send({
+                        success: 'ok', message: '회원가입되었습니다.로그인하세요'
+                    });
                 }
             );
         }
-    }
-    );
+    });
 });
 
 
