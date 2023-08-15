@@ -4,13 +4,24 @@
     overflow: hidden;
     width:50px;
     height:50px;
-    margin:0 50px;
+    margin:0 30px;
 }
+
+#mypageimg{
+    width:150px;
+    height:150px;
+    vertical-align: middle;
+    border-radius: 50%;
+    overflow: hidden;
+    
+}
+
+
 #home, #write{
     vertical-align: middle;
     width:50px;
     height:50px;
-    margin:0 50px;
+    margin:0 30px;
 }
 
 #wrap_menu{
@@ -18,6 +29,14 @@
     margin:10px auto;
     border-radius: 20px;
     width:700px;
+    height:50px;
     padding:10px;
     text-align: center;
+}
+
+#logout{
+    vertical-align: middle;
+    width:50px;
+    height:50px;
+    margin:0 30px;
 }

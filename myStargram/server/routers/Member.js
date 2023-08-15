@@ -118,4 +118,32 @@ router.post('/updateMember', async (req, res, next)=>{
     });
 });
 
+
+
+router.get('/getFollower', async (req,res,next)=>{
+    const sql = "select b.id, b.nick, b.email from follow a, members b where a.FollowingId=? and b.id=a.FollowerId";
+    connection.query( sql, [req.user.id],   (err, rows)=>{
+            if(err){  console.error(err);  next(err);   }
+            res.send(rows);
+    });
+});
+
+router.get('/getFollowing', async (req,res,next)=>{
+    const sql = "select b.id, b.nick, b.email from follow a, members b where a.FollowerId=? and b.id=a.FollowingId";
+    connection.query( sql, [req.user.id],   (err, rows)=>{
+            if(err){  console.error(err);  next(err);   }
+            res.send(rows);
+    });
+});
+
+
+router.post( '/follow', (req, res, next)=>{
+    const {FollowingId, FollowerId} = req.body;
+    const sql ='insert into follow(FollowingId, FollowerId) values(?,?)';
+    connection.query(sql, [FollowingId, FollowerId], (err, results, fields)=>{
+        if(err){  console.error(err);   next(err);   }
+            res.send('ok');
+    });
+});
+
 module.exports = router;

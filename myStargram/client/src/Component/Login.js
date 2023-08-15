@@ -2,19 +2,21 @@ import React, {useState, useEffect} from 'react'
 import '../Style/login.css'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from 'react-redux';
+import { loginAction } from '../Reducer/userSlice';
 
-function Login(props) {
+function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const onLoginLocal= async ()=>{
         const result = await axios.post('api/member/login', {email, password});
         if( result.data.login === 'fail'){
             return alert(result.data.msg);
         }else{
-            // navigate('/home');
-            props.setLogin(true);
+            dispatch( loginAction(result.data.loginUser) );
             window.location.href='http://localhost:3000/home';
         }  
     }

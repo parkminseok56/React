@@ -4,10 +4,14 @@ import '../Style/updateMember.css';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function UpdateMember(props) {
-    const navigate = useNavigate();
+import { useSelector, useDispatch } from 'react-redux';
+import { loginAction } from '../Reducer/userSlice';
 
-    const [email, setEmail] = useState('');
+function UpdateMember() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    let user = useSelector( (state)=>{ return state.user} );
+
     const [password, setPassword] = useState('');
     const [passwordChk, setPasswordChk ] = useState('');
     const [nick, setNick] = useState('');
@@ -15,27 +19,32 @@ function UpdateMember(props) {
     const [imgsrc, setImgsrc] = useState('');
     const [profilemsg, setProfilemsg] = useState('');
     
-
     useEffect(()=>{
-        if(props.loginUser.profileimg){
-            //console.log('pimg', props.loginUser.profileimg );
-            setImgsrc(props.loginUser.profileimg);
-        }else{
-            setImgsrc('http://localhost:5000/no-image.png');
+        async function fetchData(){
+            if(user.profileimg){
+                setImgsrc(user.profileimg);
+            }else{
+                setImgsrc('http://localhost:5000/no-image.png');
+            }
+            setNick(user.nick);
+            setPhone(user.phone);
+            setProfilemsg(user.profilemsg);
         }
-        setNick(props.loginUser.nick);
-        setPhone(props.loginUser.phone);
-        setEmail(props.loginUser.email);
+        fetchData();
     },[]);
 
     const onSubmit= async ()=>{
-        if(!password){return alert('password를 입력하세요');}
-        if(password!==passwordChk){return alert('password확인이 일치하지 않습니다');}
+        if(user.provider=='local' && !password){return alert('password를 입력하세요');}
+        if(user.provider=='local' && password!==passwordChk){return alert('password확인이 일치하지 않습니다');}
         if(!nick){return alert('nick-name을 입력하세요');}
         if(!phone){return alert('전화번호를 입력하세요');}
 
-        await axios.post('/api/member/updateMember', { email, nick, password, phone, profilemsg, imgsrc, provider:props.loginUser.provider })
-        window.location.href='http://localhost:3000/home';
+        await axios.post('/api/member/updateMember', { email:user.email, nick, password, phone, profilemsg, imgsrc, provider:user.provider });
+        
+        const updateUser = {email:user.email, uid:user.uid, nick, password, phone, profilemsg, profileimg:imgsrc, provider:user.provider};
+        dispatch( loginAction(updateUser) );
+
+        window.location.href='http://localhost:3000/mypage';
     }
     
     const profileimgUpload = async (e)=>{
@@ -56,15 +65,27 @@ function UpdateMember(props) {
             } style={{width:"30%", fontSize:"90%", height:"25px"}}/>
 
             <div className='lable'><label>E-mail</label></div><br />
-            <div><input type="text" value={email} disabled /></div>
-            <div className='lable'><label>password</label></div><br />
-            <div><input type="password" onChange={
-                (e)=>{ setPassword(e.currentTarget.value)}
-            }/></div>
-            <div className='lable'><label>password re-type</label></div><br />
-            <div><input type="password" onChange={
-                (e)=>{ setPasswordChk(e.currentTarget.value)}
-            }/></div>
+            <div><input type="text" value={user.email} disabled /></div>
+            
+            
+            {(user.provider==='local')?
+            (<>
+                <div className='lable'><label>password</label></div><br />
+                <div><input type="password" onChange={
+                    (e)=>{ setPassword(e.currentTarget.value)}
+                }/></div>
+                <div className='lable'><label>password re-type</label></div><br />
+                <div><input type="password" onChange={
+                    (e)=>{ setPasswordChk(e.currentTarget.value)}
+                }/></div>
+            </>):(<>
+                <div className='lable'><label>password</label></div><br />
+                <div><input type="password" disabled/></div>
+                <div className='lable'><label>password re-type</label></div><br />
+                <div><input type="password" disabled/></div>
+            </>)}
+
+
             <div className='lable'><label>nick-name</label></div><br />
             <div><input type="text" value={nick} onChange={
                 (e)=>{ setNick(e.currentTarget.value)}

@@ -4,7 +4,7 @@
     border:1px solid silver;
     border-radius: 20px;
     width: 700px;
-    padding: 40px 10px;
+    padding: 20px 10px;
     max-width: 700px;
     margin: 0 auto;
     margin-top: 1rem;
@@ -15,18 +15,31 @@ label {
     font-weight: bold; float:left
 }
 
+
+
 .lable{
     width:70%; margin:0 auto;
 }
 
-input {
+input, textarea {
     border-radius: 10px;
     border: 1px solid #c6c6c6;
     padding: 5px;
     margin-bottom: 5px;
     width:70%;
     height:40px;
-    font-size:110%;
+    font-size:100%;
+}
+textarea{
+    height:100px;
+}
+input[type=file]{width:300px; height:30px; margin:2px;}
+
+.title{
+    font-weight: bold; font-size:120%;
+}
+#img1,#img2,#img3,#img4,#img5,#img6,#img7,#img8,#img9,#img10{
+    margin:3px auto; width:500px; text-align: left;
 }
 
 .title{
@@ -75,3 +88,87 @@ button {
 }
 
 
+
+
+
+
+img{ vertical-align: middle; }
+
+#view{
+    width:700px;
+    height:500px;
+    border: 1px solid black;
+    overflow:hidden;
+    position:relative;
+}
+
+.imgList{
+    border : 1px solid red;
+    height : 500px;
+    width:7000px;
+    position:absolute;
+    left:0px;
+    transition:1s;
+}
+#writerimg{
+    vertical-align: middle;
+    border-radius: 50%;
+    overflow: hidden;
+    border:1px solid blue;
+}
+#writer{
+    line-height: 40px;
+    text-align: left;
+    width:700px;
+    height:40px;
+    margin:0;
+    font-weight:bold;
+    color:black;
+    font-size: 110%;
+}
+
+#title, #content{
+    text-align: left;
+    font-weight:bold;
+    padding:5px;
+}
+#title{
+    color:black;
+    font-size: 110%;
+}
+#content{
+    margin-bottom:80px;
+}
+
+
+
+#follow {
+    border:1px solid blue;
+    width:100px;
+    height:35px;
+    border-radius:10px;
+    float:right;
+    text-align:center;
+    line-height:35px;
+    font-size:95%
+}
+
+
+.lbtn{
+    position:absolute; 
+    left:0; bottom:235px; width:30px; height:30px; 
+    border-radius:50%; overflow:hidden; 
+    background-image:url(../images/ico_movie_171115.png); 
+    background-position : -110px -440px;
+}
+.rbtn{
+    position:absolute; 
+    right:0; bottom:235px; width:30px; height:30px; 
+    border-radius:50%; overflow:hidden; 
+    background-image:url(../images/ico_movie_171115.png); 
+    background-position : -140px -440px;
+}
+
+.playimg{
+    float:left;
+}
